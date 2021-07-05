@@ -77,3 +77,7 @@ typings/
 
 #DynamoDB Local files 
 .dynamodb/ 
+
+#Decades-specific
+deployment/
+client/build/

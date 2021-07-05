@@ -1,27 +1,35 @@
-const express = require('express');
-const app = express();
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
-const port = process.env.PORT || 3000;
+var indexRouter = require('./routes/index');
 
-// parsing body
+var app = express();
+
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, '/client/build')));
 
-// log all requests
-app.use('/', function (req, res, next) {
-    console.log(req.method, 'request:', req.url, JSON.stringify(req.body));
-    next();
+app.use('/', indexRouter);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
-// serve static page for now
-var options = {
-    dotfile: 'ignore',
-    extensions: ['htm', 'html'],
-    index: 'index.html'
-}
-app.use('/', express.static('./public', options));
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-// start
-app.listen(port, function () {
-    console.log(`Listening to port ${port}`);
-})
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;

@@ -1,0 +1,13 @@
+runtime: nodejs14
+
+manual_scaling:
+  instances: 1
+
+resources:
+  cpu: .5
+  memory_gb: 0.5
+  disk_size_gb: 10
+
+# Change for production, no cache is used only for development
+# Mitigates the problem where subsequent deployments from different machines won't work
+default_expiration: "1s"

@@ -1,22 +1,27 @@
 {
-  "name": "decades",
+  "name": "decades-server",
   "version": "1.0.0",
-  "description": "Interactive pixel-art gallery.",
-  "main": "app.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www",
+    "install-project": "npm install && npm --prefix ./client/ install",
+    "dev-server": "nodemon ./bin/www",
+    "dev-client": "npm --prefix ./client/ run start",
+    "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\"",
+    "deploy": "node deploy.js",
+    "test": "npm --prefix ./client/ run build && npm run dev-server"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://csil-git1.cs.surrey.sfu.ca/vryzhov/decades.git"
-  },
-  "keywords": [
-    "web app",
-    "pixel art"
-  ],
-  "author": "Team Decades",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0",
+    "fs-extra": "^10.0.0",
+    "nodemon": "^2.0.9"
   }
 }
