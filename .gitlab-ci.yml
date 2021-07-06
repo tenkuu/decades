@@ -28,3 +28,15 @@ deploy-prod:
     - general
   script:
     - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
+
+deploy-to-cloud:
+  stage: deploy-co-cloud
+  tags:
+    - general
+  script:
+    - echo $DEPLOY_KEY_FILE_PRODUCTION > /tmp/$CI_PIPELINE_ID.json
+    - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+    - gcloud --quiet --project $PROJECT_ID_PRODUCTION app deploy
+
+after_script:
+  - rm /tmp/$CI_PIPELINE_ID.json
