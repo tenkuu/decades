@@ -12,16 +12,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, '/client/build'), {
-//   etag: false,
-//   cacheControl: true, 
-//   setHeaders: function(res, path) { 
-//     res.setHeader("Cache-Control","max-age=0,must-revalidate");  }
-// }));
 
-// TODO: used purely for development (but still need to be deployed)
-// var nocache = require('nocache');
-// app.use(nocache())
+// Locally we will serve that build/ directory here
+// When app is deployed, GAE sets that variable to "production"
+if (process.env.NODE_ENV !== "production") {
+  app.use(express.static(path.join(__dirname, '/client/build')))
+}
 
 app.use('/', indexRouter);
 
