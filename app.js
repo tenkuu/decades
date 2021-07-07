@@ -14,6 +14,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/client/build')));
 
+// TODO: used purely for development (but still need to be deployed)
+var nocache = require('nocache');
+app.use(nocache())
+
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
