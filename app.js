@@ -13,7 +13,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/client/build'), {
-  etag: false
+  etag: false,
+  cacheControl: true, 
+  setHeaders: function(res, path) { 
+    res.setHeader("Cache-Control","max-age=0,must-revalidate");  }
 }));
 
 // TODO: used purely for development (but still need to be deployed)
