@@ -28,7 +28,7 @@ function App() {
         >
           Learn React
         </a>
-        <p>Server call (v.3): {state}</p>
+        <p>Server call (v.4): {state}</p>
       </header>
     </div>
   );
