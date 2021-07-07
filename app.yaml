@@ -10,4 +10,19 @@ resources:
 
 # Change for production, no cache is used only for development
 # Mitigates the problem where subsequent deployments from different machines won't work
-default_expiration: "1s"
+default_expiration: 0
+
+handlers:
+  - url: /static
+    static_dir: client/build/static
+  - url: /(.*\..+)$
+    static_files: client/build/\1
+    upload: client/build/(.*\..+)$
+  - url: /
+    static_files: client/build/index.html
+    upload: client/build/index.html
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+  
