@@ -12,11 +12,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '/client/build')));
+app.use(express.static(path.join(__dirname, '/client/build'), {
+  etag: false
+}));
 
 // TODO: used purely for development (but still need to be deployed)
-var nocache = require('nocache');
-app.use(nocache())
+// var nocache = require('nocache');
+// app.use(nocache())
 
 app.use('/', indexRouter);
 
