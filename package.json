@@ -8,7 +8,7 @@
     "dev-server": "nodemon ./bin/www",
     "dev-client": "npm --prefix ./client/ run start",
     "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\"",
-    "deploy": "node deploy.js",
+    "build": "node build_decades.js",
     "test": "npm --prefix ./client/ run build && npm run dev-server"
   },
   "dependencies": {

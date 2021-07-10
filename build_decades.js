@@ -37,10 +37,4 @@ for (const item of serverAppItems) {
   }
 }
 
-// // 4. Deploy
-// console.log(`[DECADES] Pushing ${deploymentDirectory}/ to the cloud...`);
-// const deploy = child_process.execSync(`gcloud app deploy ${path.join(deploymentDirectory, `app.yaml`)}`, {
-//   stdio: "inherit",
-// });
-
-// console.log("[DECADES] Successfully deployed!");
+console.log(`[DECADES] Successfully created build!`)
