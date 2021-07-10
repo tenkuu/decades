@@ -18,7 +18,7 @@ This describes purpose and usage of app's scripts defined in `package.json` at t
 
 - `npm run dev-client` - use this when you just want to test the React front-end. In this case, beware when testing some components of the app which rely on API calls. Client app runs on http://localhost:3000.
 
-- `npm run deploy` - use this to deploy the app to Google App Engine. This requires `gcloud` SDK and it assumes you have initialized it, selected the Decades team project and have rights to call `gcloud` from the console without additional rights. IMPORTANT: we will probably automate this process so that every time we push to the master, the cloud automatically updates as well. The process creates `deployment/` folder with React build and trimmed number of server files.
+- `npm run build` - use this to build the app that can be deployed to Google App Engine. The process creates `deployment/` folder with React build and trimmed number of server files. This is used to GitLab CI/CD in our project.
 
 - `npm run test` - use this to test the app in "production-like" environment - it will build the React app and run server only (as oppose to `dev` which runs client in development mode). You could use this to confirm that the app would work properly on the cloud.
 
@@ -30,4 +30,4 @@ This describes purpose and usage of app's scripts defined in `package.json` at t
 
 ## Known issues
 
-- Still working on the automatic deployment.
+- None at the moment.
