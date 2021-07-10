@@ -5,6 +5,9 @@ build-job:
   stage: build
   tags:
     - general
+  only:
+    - master
+    - merge_requests
   script:
     - npm run install-project
     - node build_decades.js
@@ -19,7 +22,11 @@ test-job:
     - build-job
   tags:
     - general
+  only:
+    - master
+    - merge_requests
   script:
+    - npx kill-port 5000 
     - npm --prefix ./deployment/ install
     - node pipeline_test.js
 
@@ -29,6 +36,8 @@ deploy-to-cloud-job:
     - build-job
   tags:
     - general
+  only:
+    - master
   script:
     - echo $DEPLOY_KEY_FILE_PRODUCTION > /tmp/$CI_PIPELINE_ID.json
     - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json

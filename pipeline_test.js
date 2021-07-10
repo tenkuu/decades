@@ -70,6 +70,7 @@ async function testDeploymentBuild() {
   await sleep(5);
 
   // Query index
+  console.log(`[DECADES] Querying the localhost...`)
   const result = await queryHost("localhost", 5000, "/", "GET");
   if (!result) {
     //TODO: make this throw an error!
