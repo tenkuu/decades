@@ -32,9 +32,13 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+  // TODO: only log for debugging
+  console.log(`[DECADES] Server experienced an error...`)
+  console.error(err)
+
+  // send the error back
   res.status(err.status || 500);
-  res.render('error');
+  res.send('Something broke!')
 });
 
 module.exports = app;
