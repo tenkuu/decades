@@ -27,7 +27,7 @@ test-job:
     - merge_requests
   script:
     - npx kill-port 5000 
-    - npm --prefix ./deployment/ install
+    - (cd deployment && npm install);
     - node pipeline_test.js
 
 deploy-to-cloud-job:
