@@ -84,3 +84,6 @@ client/build/
 
 #TODO: doing this because different versions of npm are used. Try to sync the team?
 package-lock.json 
+
+#TODO: this is for temporary db implementation
+artworks_db*
