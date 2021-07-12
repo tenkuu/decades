@@ -81,3 +81,6 @@ typings/
 #Decades-specific
 deployment/
 client/build/
+
+#TODO: doing this because different versions of npm are used. Try to sync the team?
+package-lock.json 

@@ -3,7 +3,8 @@
 ## Installation
 
 - Install node: https://nodejs.org/en/download/. Node is essential to develop and run the Decades.
-- Once you pulled the repository, navigate to the master folder and run `npm run intall-project` which would install all the current node modules for both server and client.
+- **[IMPORTANT]** To clone from GitLab, it is recommended to setup the SSH access. However, this did not work well for some of our teammates. In this case, clone the project using HTTPS and then enter your SFU Computing ID and corresponding password to authorize. You will need to do it only once and the credentials will be stored in the Credential Manager that your Git is using. 
+- Once you pulled the repository, navigate to the master folder and run `npm run install-project` which would install all the current node modules for both server and client.
 - You can now run `npm run dev` and start developing!
 
 ## Development environment
