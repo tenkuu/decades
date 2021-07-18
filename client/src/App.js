@@ -1,36 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Login from "./pages/Login";
+import LoadingScreen from "./pages/LoadingScreen";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Logo from './components/Logo'
 
-// To test the connection
-import React, {useState, useEffect} from 'react'
-import axios from 'axios';
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#000",
+    },
+    secondary: {
+      main: "#000",
+    },
+    background: {
+      default: "#0A1F1B",
+    },
+  },
+});
 
 function App() {
-  useEffect(() => {
-    axios.get('/api/hello')
-      .then(res => setState(res.data))
-  }, [])
-
-  const [state, setState] = useState('')
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>Server call (v.6): {state}</p>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+      <Logo/>
+        <Switch>
+          <Route path="/" exact component={Login} />
+          <Route path="/loading" exact component={LoadingScreen} />
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
 }
 
