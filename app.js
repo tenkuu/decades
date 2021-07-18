@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var artworksRouter = require('./routes/artworks');
 var reactRouter = require('./routes/react')
 
 var app = express();
@@ -20,7 +21,8 @@ if (process.env.NODE_ENV !== "production") {
   app.use(express.static(path.join(__dirname, '/client/build')))
 }
 
-app.use('/', indexRouter);
+app.use('/api/', indexRouter);
+app.use('/api/artworks/', artworksRouter)
 
 // Catch-all for react routes
 app.use('/*', reactRouter);
