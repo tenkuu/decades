@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var reactRouter = require('./routes/react')
 
 var app = express();
 
@@ -20,6 +21,9 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 app.use('/', indexRouter);
+
+// Catch-all for react routes
+app.use('/*', reactRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
